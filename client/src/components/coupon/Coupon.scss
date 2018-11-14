@@ -1,3 +1,8 @@
 .coupon {
   display: flex;
+  justify-content: space-between;
+}
+
+.coupon__discount {
+  color: #e85657;
 }

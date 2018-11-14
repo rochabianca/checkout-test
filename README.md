@@ -1,3 +1,8 @@
+### To Solve
+
+- [] Excess redirect
+- [] CORS
+
 ### Instructions
 
 1. Create a new Git repository with `git init`.
@@ -32,24 +37,24 @@
 
 1. Is there a time limit?
 
-    No, take your time.
+   No, take your time.
 
 2. Can I use jQuery? Sass? React? Vue? Bootstrap? BEM?
 
-    You can use anything you want.
+   You can use anything you want.
 
 3. Where's the design for the other breakpoints?
 
-    There isn't one. You could make it respond well to larger screens, but it's not the focus of this test.
+   There isn't one. You could make it respond well to larger screens, but it's not the focus of this test.
 
 4. What browser versions should I support?
 
-    You'll be fine if your interface works flawless in the most recent versions of Chrome and Firefox.
+   You'll be fine if your interface works flawless in the most recent versions of Chrome and Firefox.
 
 5. Can I get the files to embed the font used in the design?
 
-    The font used is Montserrat and is available in [Google Fonts](https://fonts.google.com/specimen/Montserrat).
+   The font used is Montserrat and is available in [Google Fonts](https://fonts.google.com/specimen/Montserrat).
 
 6. Why is everything so big in the Photoshop file?
 
-    You may notice that everything is twice as big in the Photoshop file. The layout is designed to consider Retina displays. Remember to half the dimensions you see there on your code. Use the PNG images as an example of the result you should be looking for.
+   You may notice that everything is twice as big in the Photoshop file. The layout is designed to consider Retina displays. Remember to half the dimensions you see there on your code. Use the PNG images as an example of the result you should be looking for.

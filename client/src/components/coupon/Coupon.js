@@ -4,13 +4,14 @@ import "./Coupon.min.css";
 function Coupon(props) {
   const { coupon } = props;
   return (
-    <div className="coupon">
-      <input type="checkbox" />
-      <div className="coupon__info">
-        <label>{coupon.title}</label>
-        <span>- R$ {coupon.discount}</span>
+    <label className="checkbox__container">
+      <div className="coupon">
+        <span>{coupon.title}</span>{" "}
+        <span className="coupon__discount">- R$ {coupon.discount},00</span>
       </div>
-    </div>
+      <input type="radio" name="radio" />
+      <span className="checkbox__checkmark" />
+    </label>
   );
 }
 
