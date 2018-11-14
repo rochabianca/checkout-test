@@ -38,6 +38,32 @@ export default class Checkout extends Component {
           {checkout.availableCoupons ? (
             <Coupons availableCoupons={checkout.availableCoupons} />
           ) : null}
+
+          <section className="resume">
+            <h3 className="checkout__title">resumo</h3>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td>valor original</td>
+                  <td>{product.price}</td>
+                </tr>
+
+                <tr>
+                  <td>cupom</td>
+                  <td>- R$ 35,00</td>
+                </tr>
+                <tr>
+                  <td>frete</td>
+                  <td>R$ {checkout.shippingPrice}</td>
+                </tr>
+                <tr>
+                  <td>total</td>
+                  <td>{checkout.totalPrice}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </div>
       );
     } else {

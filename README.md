@@ -3,6 +3,10 @@
 - [] Excess redirect
 - [] CORS
 
+### To Do
+
+- [] Coupon Logic
+
 ### Instructions
 
 1. Create a new Git repository with `git init`.
