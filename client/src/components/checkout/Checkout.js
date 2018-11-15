@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Checkout.min.css";
 import "./Product.min.css";
 import Coupons from "../coupon/Coupons";
+import Resume from "../resume/Resume";
 export default class Checkout extends Component {
   state = {
     coupons: {},
@@ -64,33 +65,12 @@ export default class Checkout extends Component {
             />
           ) : null}
 
-          <section className="resume">
-            <h3 className="checkout__title">resumo</h3>
-
-            <table>
-              <tbody>
-                <tr>
-                  <td>valor original</td>
-                  <td>{product.price}</td>
-                </tr>
-                {currentCoupon ? (
-                  <tr>
-                    <td>cupom</td>
-                    <td>- {currentCoupon.discount}</td>
-                  </tr>
-                ) : null}
-
-                <tr>
-                  <td>frete</td>
-                  <td>R$ {checkout.shippingPrice}</td>
-                </tr>
-                <tr>
-                  <td>total</td>
-                  <td>{totalPrice}</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
+          <Resume
+            productPrice={product.price}
+            currentCoupon={currentCoupon}
+            shippingPrice={checkout.shippingPrice}
+            totalPrice={totalPrice}
+          />
         </div>
       );
     } else {

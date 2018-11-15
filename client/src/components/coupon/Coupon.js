@@ -7,7 +7,9 @@ function Coupon(props) {
     <label className="checkbox__container">
       <div className="coupon">
         <span>{coupon.title}</span>{" "}
-        <span className="coupon__discount">- R$ {coupon.discount},00</span>
+        <span className="coupon__discount">
+          - R$ {parseFloat(coupon.discount).toFixed(2)}
+        </span>
       </div>
       <input
         type="radio"
