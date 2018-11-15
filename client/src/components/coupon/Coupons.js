@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./Checkbox.min.css";
 
 function Coupons(props) {
-  const { availableCoupons } = props;
+  const { availableCoupons, selectCoupon } = props;
   return (
     <section className="checkout__coupons">
       <h3 className="checkout__title">cupons</h3>
@@ -13,13 +13,19 @@ function Coupons(props) {
         <li>
           <label className="checkbox__container">
             não usar cupom
-            <input type="radio" name="radio" defaultChecked="checked" />
+            <input
+              type="radio"
+              name="radio"
+              value="none"
+              defaultChecked="checked"
+              onClick={selectCoupon}
+            />
             <span className="checkbox__checkmark" />
           </label>
         </li>
         {availableCoupons.map(coupon => (
           <li key={coupon.id}>
-            <Coupon coupon={coupon} />
+            <Coupon coupon={coupon} selectCoupon={selectCoupon} />
           </li>
         ))}
       </ul>

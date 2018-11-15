@@ -1,11 +1,11 @@
 ### To Solve
 
-- [] Excess redirect
-- [] CORS
+- [ ] Excess redirect
+- [ ] CORS
 
 ### To Do
 
-- [] Coupon Logic
+- [x] Coupon Logic
 
 ### Instructions
 

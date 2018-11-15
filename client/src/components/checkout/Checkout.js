@@ -5,8 +5,30 @@ import "./Product.min.css";
 import Coupons from "../coupon/Coupons";
 export default class Checkout extends Component {
   state = {
+    coupons: {},
+    currentCoupon: "",
+    totalPrice: "",
     product: {},
     checkout: {}
+  };
+
+  selectCoupon = e => {
+    const { id } = this.props.match.params;
+    const saveThis = this;
+    const couponId = e.target.value;
+
+    axios
+      .get(`http://localhost:3000/api/checkouts/${id}?couponId=${couponId}`)
+      .then(function(res) {
+        var currentCoupon = res.data.checkout.availableCoupons.find(coupon =>
+          coupon.id == couponId ? coupon : null
+        );
+        console.log(currentCoupon);
+        saveThis.setState({
+          currentCoupon,
+          totalPrice: res.data.checkout.totalPrice
+        });
+      });
   };
 
   componentDidMount() {
@@ -14,11 +36,11 @@ export default class Checkout extends Component {
     const saveThis = this;
     axios({
       method: "get",
-      url: `http://localhost:3000/api/checkouts/${id}`,
-      crossDomain: true
+      url: `http://localhost:3000/api/checkouts/${id}`
     }).then(function(res) {
-      console.log(res.data);
       saveThis.setState({
+        coupons: res.data.checkout.availableCoupons,
+        totalPrice: res.data.checkout.totalPrice,
         product: res.data.product,
         checkout: res.data.checkout
       });
@@ -26,8 +48,8 @@ export default class Checkout extends Component {
     });
   }
   render() {
-    const { product, checkout } = this.state;
-
+    const { product, checkout, totalPrice, currentCoupon } = this.state;
+    console.log(currentCoupon);
     if (product && checkout) {
       return (
         <div>
@@ -36,7 +58,10 @@ export default class Checkout extends Component {
           </div>
 
           {checkout.availableCoupons ? (
-            <Coupons availableCoupons={checkout.availableCoupons} />
+            <Coupons
+              availableCoupons={checkout.availableCoupons}
+              selectCoupon={this.selectCoupon}
+            />
           ) : null}
 
           <section className="resume">
@@ -48,18 +73,20 @@ export default class Checkout extends Component {
                   <td>valor original</td>
                   <td>{product.price}</td>
                 </tr>
+                {currentCoupon ? (
+                  <tr>
+                    <td>cupom</td>
+                    <td>- {currentCoupon.discount}</td>
+                  </tr>
+                ) : null}
 
-                <tr>
-                  <td>cupom</td>
-                  <td>- R$ 35,00</td>
-                </tr>
                 <tr>
                   <td>frete</td>
                   <td>R$ {checkout.shippingPrice}</td>
                 </tr>
                 <tr>
                   <td>total</td>
-                  <td>{checkout.totalPrice}</td>
+                  <td>{totalPrice}</td>
                 </tr>
               </tbody>
             </table>
