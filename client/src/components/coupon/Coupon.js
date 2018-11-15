@@ -2,7 +2,7 @@ import React from "react";
 import "./Coupon.min.css";
 
 function Coupon(props) {
-  const { coupon, selectCoupon } = props;
+  const { coupon, getData } = props;
   return (
     <label className="checkbox__container">
       <div className="coupon">
@@ -11,12 +11,7 @@ function Coupon(props) {
           - R$ {parseFloat(coupon.discount).toFixed(2)}
         </span>
       </div>
-      <input
-        type="radio"
-        name="radio"
-        value={coupon.id}
-        onClick={selectCoupon}
-      />
+      <input type="radio" name="radio" value={coupon.id} onClick={getData} />
       <span className="checkbox__checkmark" />
     </label>
   );

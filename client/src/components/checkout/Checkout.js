@@ -13,10 +13,11 @@ export default class Checkout extends Component {
     checkout: {}
   };
 
-  selectCoupon = e => {
+  getData = e => {
     const { id } = this.props.match.params;
     const saveThis = this;
-    const couponId = e.target.value;
+    let couponId;
+    e ? (couponId = e.target.value) : (couponId = null);
 
     axios
       .get(`http://localhost:3000/api/checkouts/${id}?couponId=${couponId}`)
@@ -27,26 +28,16 @@ export default class Checkout extends Component {
         console.log(currentCoupon);
         saveThis.setState({
           currentCoupon,
-          totalPrice: res.data.checkout.totalPrice
+          totalPrice: res.data.checkout.totalPrice,
+          product: res.data.product,
+          checkout: res.data.checkout
         });
       });
+    return;
   };
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    const saveThis = this;
-    axios({
-      method: "get",
-      url: `http://localhost:3000/api/checkouts/${id}`
-    }).then(function(res) {
-      saveThis.setState({
-        coupons: res.data.checkout.availableCoupons,
-        totalPrice: res.data.checkout.totalPrice,
-        product: res.data.product,
-        checkout: res.data.checkout
-      });
-      return;
-    });
+    this.getData();
   }
   render() {
     const { product, checkout, totalPrice, currentCoupon } = this.state;
@@ -61,7 +52,7 @@ export default class Checkout extends Component {
           {checkout.availableCoupons ? (
             <Coupons
               availableCoupons={checkout.availableCoupons}
-              selectCoupon={this.selectCoupon}
+              getData={this.getData}
             />
           ) : null}
 
