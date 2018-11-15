@@ -1,6 +1,6 @@
 ### To Solve
 
-- [ ] Excess redirect
+- [x] Excess redirect
 - [x] CORS
 
 ### To Do

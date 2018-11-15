@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import Checkout from "./components/checkout/Checkout";
@@ -11,8 +16,10 @@ class App extends Component {
         <Header />
         <Router>
           <div className="container">
-            <Redirect to={"/checkout/6544"} />
-            <Route exact path="/checkout/:id" component={Checkout} />
+            <Switch>
+              <Redirect exact from="/" to={"/checkout/6544"} />
+              <Route exact path="/checkout/:id" component={Checkout} />
+            </Switch>
           </div>
         </Router>
       </div>
