@@ -33,6 +33,9 @@ function Coupons(props) {
   );
 }
 
-Coupons.propTypes = {};
+Coupons.propTypes = {
+  availableCoupons: PropTypes.array,
+  getData: PropTypes.func.isRequired
+};
 
 export default Coupons;

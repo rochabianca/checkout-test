@@ -1,3 +1,12 @@
+.checkout__product__image {
+  img {
+    margin: 30px auto 60px auto;
+    display: block;
+    width: 125px;
+    border-radius: 5px;
+  }
+}
+
 .checkout__title {
   margin: 0;
   margin-top: 40px;
@@ -9,4 +18,15 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.checkout__buttons {
+  border-top: 2px solid #f4f2f0;
+  display: flex;
+  margin: 0 -30px 0 -30px;
+  padding: 10px 30px 10px 30px;
+  text-align: center;
+  .btn {
+    margin-right: 10px;
+  }
 }

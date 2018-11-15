@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import "./Checkout.min.css";
-import "./Product.min.css";
+import "./Btn.min.css";
 
 import Coupons from "../coupon/Coupons";
 import Resume from "../resume/Resume";
@@ -15,7 +15,7 @@ export default class Checkout extends Component {
     totalPrice: "",
     product: {},
     checkout: {},
-    modal: {}
+    modal: ""
   };
 
   getData = e => {
@@ -30,7 +30,6 @@ export default class Checkout extends Component {
         var currentCoupon = res.data.checkout.availableCoupons.find(coupon =>
           coupon.id == couponId ? coupon : null
         );
-        console.log(currentCoupon);
         saveThis.setState({
           currentCoupon,
           totalPrice: res.data.checkout.totalPrice,
@@ -41,16 +40,44 @@ export default class Checkout extends Component {
     return;
   };
 
+  confirmPurchase = () => {
+    const { id } = this.props.match.params;
+    const { currentCoupon } = this.state;
+    const saveThis = this;
+    let couponId;
+    currentCoupon ? (couponId = currentCoupon.id) : (couponId = null);
+    axios
+      .post(`http://localhost:3000/api/checkouts/${id}?couponId=${couponId}`)
+      .then(function() {
+        saveThis.setState({
+          modal: {
+            type: "confirmation",
+            title: "compra confirmada",
+            message: "enviaremos atualizações sobre o pedido para o seu email"
+          }
+        });
+      });
+  };
+
+  cancelPurchase = () => {
+    this.setState({
+      modal: {
+        type: "cancelation",
+        title: "compra cancelada",
+        message: "o pedido não foi enviado e você não será cobrado"
+      }
+    });
+  };
+
   componentDidMount() {
     this.getData();
   }
   render() {
-    const { product, checkout, totalPrice, currentCoupon } = this.state;
-    console.log(currentCoupon);
+    const { product, checkout, totalPrice, currentCoupon, modal } = this.state;
     if (product && checkout) {
       return (
         <div>
-          <div className="product__image">
+          <div className="checkout__product__image">
             <img src={product.image} alt={product.title} />
           </div>
 
@@ -68,11 +95,15 @@ export default class Checkout extends Component {
             totalPrice={totalPrice}
           />
 
-          <div className="buttons">
-            <button>cancelar</button>
-            <button>confirmar</button>
+          <div className="checkout__buttons">
+            <button onClick={this.cancelPurchase} className="btn btn__cancel">
+              cancelar
+            </button>
+            <button onClick={this.confirmPurchase} className="btn btn__confirm">
+              confirmar
+            </button>
           </div>
-          <Modal />
+          {modal ? <Modal modal={modal} /> : null}
         </div>
       );
     } else {
