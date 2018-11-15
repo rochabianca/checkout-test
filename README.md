@@ -1,3 +1,9 @@
+### Instructions
+
+1. Install the dependencies of the backend with `npm install`
+2. Install the client's dependencies with `npm run install-client`
+3. run the server with `npm run dev`
+
 ### To Solve
 
 - [x] Excess redirect

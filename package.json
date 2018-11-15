@@ -2,6 +2,7 @@
   "name": "enjoei-front-end-test",
   "main": "server.js",
   "scripts": {
+    "install-client": "cd client && npm install",
     "client": "cd client && npm start",
     "server": "node server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
