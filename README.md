@@ -1,7 +1,7 @@
 ### To Solve
 
 - [ ] Excess redirect
-- [ ] CORS
+- [x] CORS
 
 ### To Do
 

@@ -25,7 +25,7 @@ export default class Checkout extends Component {
     e ? (couponId = e.target.value) : (couponId = null);
 
     axios
-      .get(`http://localhost:3000/api/checkouts/${id}?couponId=${couponId}`)
+      .get(`http://localhost:5000/api/checkouts/${id}?couponId=${couponId}`)
       .then(function(res) {
         var currentCoupon = res.data.checkout.availableCoupons.find(coupon =>
           coupon.id == couponId ? coupon : null
@@ -47,7 +47,7 @@ export default class Checkout extends Component {
     let couponId;
     currentCoupon ? (couponId = currentCoupon.id) : (couponId = null);
     axios
-      .post(`http://localhost:3000/api/checkouts/${id}?couponId=${couponId}`)
+      .post(`http://localhost:5000/api/checkouts/${id}?couponId=${couponId}`)
       .then(function() {
         saveThis.setState({
           modal: {

@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/", function(req, res) {
   res.redirect("/produto/1321/checkout/6544");
