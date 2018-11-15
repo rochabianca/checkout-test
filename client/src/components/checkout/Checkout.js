@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
+
 import "./Checkout.min.css";
 import "./Product.min.css";
+
 import Coupons from "../coupon/Coupons";
 import Resume from "../resume/Resume";
+import Modal from "../modal/Modal";
+
 export default class Checkout extends Component {
   state = {
     coupons: {},
     currentCoupon: "",
     totalPrice: "",
     product: {},
-    checkout: {}
+    checkout: {},
+    modal: {}
   };
 
   getData = e => {
@@ -62,6 +67,12 @@ export default class Checkout extends Component {
             shippingPrice={checkout.shippingPrice}
             totalPrice={totalPrice}
           />
+
+          <div className="buttons">
+            <button>cancelar</button>
+            <button>confirmar</button>
+          </div>
+          <Modal />
         </div>
       );
     } else {
